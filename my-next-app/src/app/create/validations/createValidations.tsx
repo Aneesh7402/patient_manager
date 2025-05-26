@@ -23,7 +23,7 @@ export const personalInfoValidationSchema = Yup.object({
 
   dob: Yup.date()
     .max(new Date(), "Date of birth cannot be in the future") // Ensure DOB is not in the future
-    .test("age", "You must be at least 18 years old", (value) => {
+    .test("age", "You must be at least 18 years old", (value:any) => {
       const age = new Date().getFullYear() - new Date(value).getFullYear();
       return age >= 18;
     })

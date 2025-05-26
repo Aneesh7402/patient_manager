@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import TextInput from "../(components)/textInput"; 
 import DateInput from "../(components)/dateInput";
 import { useStepperStore } from "../(utils)/store";
@@ -22,7 +21,7 @@ const InsuranceInfoComponent = () => {
     validationSchema: insuranceInfoValidationSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
+    onSubmit: () => {
     },
   });
 

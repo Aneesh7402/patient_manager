@@ -1,17 +1,8 @@
 import React, { useEffect } from "react";
 import { useFormik, FieldArray, FormikProvider } from "formik";
-import * as Yup from "yup";
 import TextInput from "../(components)/textInput";
 import { useStepperStore } from "../(utils)/store";
-
-const medicalHistoryValidationSchema = Yup.object().shape({
-  medicalHistory: Yup.array().of(
-    Yup.object().shape({
-      conditionName: Yup.string().required("Condition name is required"),
-      conditionDetails: Yup.string().required("Condition details are required"),
-    })
-  ),
-});
+import { medicalHistoryValidationSchema } from "./validations/createValidations";
 
 const MedicalHistoryComponent = () => {
   const { setFormik } = useStepperStore();
@@ -28,7 +19,7 @@ const MedicalHistoryComponent = () => {
     validationSchema: medicalHistoryValidationSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
+    onSubmit: () => {
       // Handle form submission
     },
   });
@@ -59,9 +50,10 @@ const MedicalHistoryComponent = () => {
                     placeholder="Enter medical condition name"
                   />
                   {formik.touched.medicalHistory?.[index]?.conditionName &&
+                    typeof formik.errors.medicalHistory?.[index] === "object" &&
                     formik.errors.medicalHistory?.[index]?.conditionName && (
                       <div className="text-red-500 text-sm">
-                        {formik.errors.medicalHistory[index].conditionName}
+                        {formik.errors.medicalHistory[index]?.conditionName}
                       </div>
                     )}
 
@@ -73,9 +65,10 @@ const MedicalHistoryComponent = () => {
                     placeholder="Describe the condition"
                   />
                   {formik.touched.medicalHistory?.[index]?.conditionDetails &&
+                    typeof formik.errors.medicalHistory?.[index] === "object" &&
                     formik.errors.medicalHistory?.[index]?.conditionDetails && (
                       <div className="text-red-500 text-sm">
-                        {formik.errors.medicalHistory[index].conditionDetails}
+                        {formik.errors.medicalHistory[index]?.conditionDetails}
                       </div>
                     )}
                 </div>

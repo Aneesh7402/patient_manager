@@ -18,7 +18,7 @@ type StepperStore = {
 };
 
 // Define the structure of the store
-export const useStepperStore = create<StepperStore>((set, get) => ({
+export const useStepperStore = create<StepperStore>((set) => ({
   // Stepper-related state
   activeStep: 0,
   steps: Object.values(STEPS_TO_NAMES).map((title) => ({

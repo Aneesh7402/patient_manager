@@ -49,9 +49,9 @@ const App = () => {
 
     if (result.rows && result.rows.length > 0) {
       setData(result.rows);
-      
+      const rows = result.rows as any[];
       // Dynamically extract headers from keys
-      const keys = Object.keys(result.rows[0]);
+      const keys = Object.keys(rows[0]);
       setHeaders(keys);
     }
   };
@@ -71,8 +71,9 @@ const App = () => {
 
       if (result.rows && result.rows.length > 0) {
         setData(result.rows);
+        const rows = result.rows as any[];
         // Dynamically extract headers from keys
-        const keys = Object.keys(result.rows[0]);
+        const keys = Object.keys(rows[0]);
         setHeaders(keys);
       }
       setIsLoading(false);

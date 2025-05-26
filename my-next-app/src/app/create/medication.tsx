@@ -20,7 +20,7 @@ const MedicationsComponent = () => {
     validationSchema: medicationsValidationSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {},
+    onSubmit: () => {},
   });
 
   useEffect(() => {
@@ -48,9 +48,10 @@ const MedicationsComponent = () => {
                     placeholder="Enter medication name"
                   />
                   {formik.touched.medications?.[index]?.medicationName &&
+                    typeof formik.errors.medications?.[index] === "object" &&
                     formik.errors.medications?.[index]?.medicationName && (
                       <div className="text-red-500">
-                        {formik.errors.medications[index].medicationName}
+                        {formik.errors.medications[index]?.medicationName}
                       </div>
                     )}
 
@@ -63,9 +64,10 @@ const MedicationsComponent = () => {
                     placeholder="Enter dosage"
                   />
                   {formik.touched.medications?.[index]?.dosage &&
+                    typeof formik.errors.medications?.[index] === "object" &&
                     formik.errors.medications?.[index]?.dosage && (
                       <div className="text-red-500">
-                        {formik.errors.medications[index].dosage}
+                        {formik.errors.medications[index]?.dosage}
                       </div>
                     )}
 
@@ -78,9 +80,10 @@ const MedicationsComponent = () => {
                     placeholder="Enter frequency"
                   />
                   {formik.touched.medications?.[index]?.frequency &&
+                    typeof formik.errors.medications?.[index] === "object" &&
                     formik.errors.medications?.[index]?.frequency && (
                       <div className="text-red-500">
-                        {formik.errors.medications[index].frequency}
+                        {formik.errors.medications[index]?.frequency}
                       </div>
                     )}
 

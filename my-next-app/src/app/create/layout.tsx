@@ -1,11 +1,9 @@
 'use client';
-
-import { useStepperStore } from '../(utils)/store';
 import type { ReactNode } from 'react';
 import { StepperWrapper } from '../(components)/stepperWrapper';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const { activeStep, steps } = useStepperStore();
+
 
   return (
     <div className="h-full flex flex-col">

@@ -6,7 +6,7 @@ import { Stepper } from './stepper';
 
 
 export const StepperWrapper = () => {
-  const handleStepClick = (index: number): boolean => {
+  const handleStepClick = (): boolean => {
     // Add your custom logic here
     return false
   };

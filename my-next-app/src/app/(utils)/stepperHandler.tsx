@@ -6,18 +6,11 @@ import {
   insertMedications,
   insertPatient,
 } from "../(db)/db";
-import { useStepperStore } from "./store";
 import { validateFormik } from "./functions";
 import { toast } from "react-toastify"; // Assuming you're using react-toastify for toast notifications
 
 export const handleBack = () => {
-  const { activeStep, setActiveStep } = useStepperStore();
-
-  if (activeStep > 0) {
-    // Global logic here
-
-    setActiveStep(activeStep - 1);
-  }
+  //This feature has been disabled for now
 };
 
 export const handleContinue = async (
@@ -37,7 +30,7 @@ export const handleContinue = async (
 
     if (Object.keys(res).length) {
       Object.keys(res).forEach((key) => {
-        const errorDetail = res[key];
+        const errorDetail = res[key as keyof typeof res];
         // Check if the error detail is an object and stringify it for better readability
         const errorMessage =
           typeof errorDetail === "object"
@@ -64,8 +57,9 @@ export const handleContinue = async (
       // Now, proceed with setting the step data and progress
       setStepData(currActiveStep, {
         ...formikObject?.values,
-        id: result.data?.uuid,
+        id: (result.data as any)?.uuid ?? null,
       });
+
       setStepProgress(currActiveStep, true); // Mark current step as completed
 
       // Move to the next step

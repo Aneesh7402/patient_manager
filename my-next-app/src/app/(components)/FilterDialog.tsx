@@ -187,7 +187,7 @@ const FilterDialog: FC<FilterDialogProps> = ({
                   <li>
                     Use proper quotes for string values (e.g.{" "}
                     <code className="bg-gray-100 px-1 py-0.5 rounded text-gray-700 text-xs">
-                      gender = 'FEMALE'
+                      gender = &apos;FEMALE&apos;
                     </code>
                     )
                   </li>
@@ -217,7 +217,6 @@ const FilterDialog: FC<FilterDialogProps> = ({
             <UserTable
               headers={headers}
               data={data}
-              disableActions={true}
               enableFilter={false}
               disablePagination={true}
             />

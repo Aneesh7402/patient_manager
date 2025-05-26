@@ -8,7 +8,7 @@ interface StepperProps {
 }
 
 export const Stepper: React.FC<StepperProps> = ({ handleStepClick }) => {
-  const { activeStep, steps, setActiveStep, stepData } = useStepperStore();
+  const { activeStep, steps, setActiveStep } = useStepperStore();
   const onStepClick = (index: number) => {
     const canJump = handleStepClick?.(index) ?? true; // default to true if no handler provided
     if (canJump) {

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Search, Bell, User, Menu, X } from "lucide-react";
+import { Bell, User, Menu, X } from "lucide-react";
 
 export default function Navbar({
   collapsed,
@@ -10,7 +9,6 @@ export default function Navbar({
   collapsed: boolean;
   toggleCollapsed: () => void;
 }) {
-  const [searchQuery, setSearchQuery] = useState<string>("");
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-md px-6 py-4 flex justify-between items-center">

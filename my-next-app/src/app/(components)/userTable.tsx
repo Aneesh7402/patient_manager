@@ -10,7 +10,7 @@ interface TableProps {
   enableFilter: boolean;
   setFilterClicked?: (value: boolean) => void;
   disablePagination?: boolean;
-  disableActions?: boolean;
+  
   setShowQueryClicked?: (value: boolean) => void;
 }
 
@@ -20,7 +20,7 @@ const UserTable: FC<TableProps> = ({
   enableFilter,
   setFilterClicked,
   disablePagination,
-  disableActions,
+  
   setShowQueryClicked,
 }) => {
   const [selectedHeaders, setSelectedHeaders] = useState<string[]>([]);

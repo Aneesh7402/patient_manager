@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import TextInput from "../(components)/textInput"; 
 import SingleSelectDropdown from "../(components)/singleSelectDropdown";
 import DateInput from "../(components)/dateInput";
@@ -24,7 +23,7 @@ const PersonalInfoComponent = () => {
     validationSchema: personalInfoValidationSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
+    onSubmit: () => {
 
     },
   });

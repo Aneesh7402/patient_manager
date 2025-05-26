@@ -1,6 +1,5 @@
 import { PGlite } from "@electric-sql/pglite";
 import { live } from "@electric-sql/pglite/live";
-import { uuid } from "drizzle-orm/gel-core";
 import { v4 as uuidv4 } from 'uuid';
 
 let db: PGlite;
@@ -57,17 +56,13 @@ export async function getDb() {
 
 
 // Dummy check
-interface CountResult {
-  count: number;
-}
-
 
 
 export async function insertDummyDataIfNeeded() {
   const db = await getDb();
 
   // Check if any patients exist
-  const result = await db.query(`
+  const result:any = await db.query(`
     SELECT COUNT(*) FROM patients;
   `);
   const count = parseInt(result.rows[0].count);
@@ -314,13 +309,14 @@ export const executeQuery = async (
   try {
     const database = await getDb();
     const result = await database.query(sqlQuery, params);
+    
 
     if (result.rows && result.rows.length > 0) {
       // Success case: Set data and headers
       setData(result.rows);
+      const rows = result.rows as any[];
 
-
-      const keys = Object.keys(result.rows[0]);
+      const keys = Object.keys(rows[0]);
       setHeaders(keys);
       return true;
     } else {
