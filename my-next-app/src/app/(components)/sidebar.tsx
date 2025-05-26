@@ -2,9 +2,17 @@
 
 import { useState } from "react";
 import { LayoutDashboard, ChevronDown, ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname} from "next/navigation";
 
 // Assuming you're using react-feather for icons
+
+interface SidebarSectionProps {
+  title: string;
+  icon: React.ComponentType<any>;
+  headings: { name: string; href: string }[]; // headings now include 'name' and 'href'
+  defaultOpen?: boolean;
+}
+
 
 interface SidebarSectionProps {
   title: string;
@@ -20,13 +28,12 @@ function SidebarSection({
   defaultOpen = false,
 }: SidebarSectionProps) {
   const [open, setOpen] = useState(defaultOpen);
-  const [selected, setSelected] = useState<string>("");
-  const router = useRouter(); // Initialize the router hook
+  const pathname = usePathname(); // Get the current pathname
+  const router = useRouter(); // Use useRouter to navigate
 
   const handleNavigation = (href: string) => {
-
-    router.push(href);
-    setSelected(href); 
+  
+    router.push(href); // Navigate to the new route using useRouter
   };
 
   return (
@@ -58,7 +65,7 @@ function SidebarSection({
               key={href}
               onClick={() => handleNavigation(href)} // Handle navigation on click
               className={`cursor-pointer text-gray-600 hover:text-pink-600 ${
-                selected === href
+                pathname === href // Compare the pathname with the href
                   ? "text-pink-600 font-semibold border-l-2 border-pink-600 pl-2"
                   : ""
               }`}
@@ -71,6 +78,8 @@ function SidebarSection({
     </div>
   );
 }
+
+
 
 export default function Sidebar({
   collapsed,
